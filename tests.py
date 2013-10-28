@@ -54,5 +54,12 @@ class GameTest(unittest.TestCase):
 		self.assertFalse(g.winner(0))
 		self.assertTrue(g.winner(1))
 
+	def test_draw_board(self):
+		g = game.Game()
+		for i in [5,3,1,9,4,6]:
+			g.play(i) 
+		self.assertEqual("|X|2|O|\n|X|X|O|\n|2|2|O|" , g.draw_board)
+		
+
 if __name__ == '__main__':
 	unittest.main()

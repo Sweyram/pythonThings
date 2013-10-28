@@ -38,3 +38,22 @@ class Game(object):
 	def valid_moves(self):
 		return [i for i, x in enumerate(self.board) if x == self.BLANK]
 
+
+	@property
+	def draw_board(self):
+		b = self.board
+
+		for i in b:
+			if i == 0:
+				b[i] = "X"
+			if i == 1:
+				b[i] = "O"
+			else:
+				pass
+
+		print "|",b[0],"|",b[1],"|",b[2],"|"
+		print "|",b[3],"|",b[4],"|",b[5],"|"
+		print "|",b[6],"|",b[7],"|",b[8],"|"
+
+
+
