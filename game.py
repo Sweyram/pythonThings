@@ -1,3 +1,4 @@
+import random
 class Game(object):
 	BLANK = 2
 
@@ -39,6 +40,37 @@ class Game(object):
 		return [i for i, x in enumerate(self.board) if x == self.BLANK]
 
 
+	def players(self):
+    	starter = raw_input("Do you require the first move? (y/n): ")
+    	if starter == "y":
+        	print "\nThen take the first move. You will need it."
+        	human = 0
+        	computer = 1
+        	human = current_player()
+  		else:
+        	print "\nComputer goes first"
+        	computer = 0
+        	human = 1
+        	computer = self.current_player()
+    	return computer, human
+
+
+
+	def computer_play(self):
+		pos = random.choice(self.valid_moves())
+		return pos
+
+	def human_play(self):
+		valid = self.valid_moves()
+		pos = None
+		print "It is your turn"
+		while pos not in valid:
+			pos =  int(raw_input("Your move:))
+			if pos not in valid:
+				print "still an invalid move"
+			return pos	
+
+
 	@property
 	def draw_board(self):
 		b = self.board
@@ -55,5 +87,35 @@ class Game(object):
 		print "|",b[3],"|",b[4],"|",b[5],"|"
 		print "|",b[6],"|",b[7],"|",b[8],"|"
 
+while True:
+	g = Game(object)
 
+	print "Welcome to a game of tic tac toe"	
+	print "Here's your board"
+	
+	g.draw_board
+
+	g.players()
+
+	human = g.players()
+	computer = g.players()
+
+	turn = 0
+
+	while not winner(g.players()):
+		if turn == human:
+			pos = g.human_play()
+			g.play(pos)
+		else:
+			pos =  g.computer_play()
+			g.play(pos)
+		turn =  next_player()
+	break
+
+
+
+	
+
+
+	
 
